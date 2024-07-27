@@ -43,7 +43,12 @@
 }
 .location{
   font-size: 24px;
+  font-weight: 700;
 }
 .location strong{
   font-size: 32px;
+}
+.location span{
+  font-size: 24px;
+  color:gray;
 }

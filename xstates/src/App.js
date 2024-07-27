@@ -1,23 +1,54 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useEffect, useState } from 'react'
 
 function App() {
+
+  const [countryList, setCountryList] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState('');
+
+  const fetchCountry = async () => {
+    try {
+      
+      let response = await fetch('https://crio-location-selector.onrender.com/countries');
+      let data = await response.json();
+
+      setCountryList(data);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const fetchState = async () => {
+    try {
+      
+      let response = await fetch('https://crio-location-selector.onrender.com/country=${selectedCountry}/states');
+      let data = await response.json();
+
+      setCountryList(data);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+
+  useEffect(()=>{
+    fetchCountry();
+  },[]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Select Location</h1>
+      <div>
+        <select onChange={fetchState}>
+          <option value="select">Select Country</option>
+        {countryList.map((countryName)=>{
+          return <option value={countryName}>{countryName}</option>
+        })}
+        </select>
+      </div>
     </div>
   );
 }

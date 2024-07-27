@@ -122,7 +122,8 @@ function App() {
       </div>
       <div className='location'>
         {selectedCity && 
-          <p><b>You Selected </b><strong>{selectedCity},</strong> <span> {selectedState}, {selectedCountry}</span></p>
+          // <p><b>You Selected </b><strong>{selectedCity},</strong> <span> {selectedState}, {selectedCountry}</span></p>
+          <span>You Selected {selectedCity}, {selectedState}, {selectedCountry}</span>
         }
       </div>
     </div>

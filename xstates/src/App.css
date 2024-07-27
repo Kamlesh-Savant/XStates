@@ -44,6 +44,7 @@
 .location{
   font-size: 24px;
   font-weight: 700;
+  margin-top: 10px;
 }
 .location strong{
   font-size: 32px;

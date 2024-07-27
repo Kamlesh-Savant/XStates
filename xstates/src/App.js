@@ -30,10 +30,12 @@ function App() {
 
   const fetchState = async (e) => {
     try {
+      setStateList([]);
+      setCityList([]);
+      setSelectedCountry('');
+      setSelectedState('');
+      setSelectedCity('');
       if(e.target.value === "select"){
-        setStateList([]);
-        setCityList([]);
-        setSelectedCountry('');
         setSelectedState('');
         return;
       }
@@ -56,10 +58,10 @@ function App() {
       if(e.target.value === "select"){
         setCityList([]);
         setSelectedState('');
-
+        setSelectedCity('');
         return;
       }
-
+      setSelectedCity('');
       setSelectedState(e.target.value);
       let response = await fetch(`https://crio-location-selector.onrender.com/country=${selectedCountry}/state=${e.target.value}/cities`);
       let data = await response.json();
@@ -122,8 +124,8 @@ function App() {
       </div>
       <div className='location'>
         {selectedCity && 
-          // <p><b>You Selected </b><strong>{selectedCity},</strong> <span> {selectedState}, {selectedCountry}</span></p>
-          <span>You Selected {selectedCity}, {selectedState}, {selectedCountry}</span>
+          <p><b>You Selected </b><strong>{selectedCity},</strong> <span> {selectedState}, {selectedCountry}</span></p>
+          // <span>You Selected {selectedCity}, {selectedState}, {selectedCountry}</span>
         }
       </div>
     </div>
